@@ -11,6 +11,7 @@ export default function HomePage() {
   const [works, setWorks] = useState([]);
   const [mode, setMode] = useState("signin");
   const [publicUsername, setPublicUsername] = useState("");
+  const [isPublicMode, setIsPublicMode] = useState(false);
   const [publicProfile, setPublicProfile] = useState(null);
   const [publicWorks, setPublicWorks] = useState([]);
   const [displayName, setDisplayName] = useState("");
@@ -77,6 +78,7 @@ export default function HomePage() {
     const params = new URLSearchParams(window.location.search);
     const requestedUser = params.get("u");
     if (requestedUser) {
+      setIsPublicMode(true);
       setPublicUsername(requestedUser);
       loadPublicProfile(requestedUser);
     }
@@ -199,8 +201,6 @@ export default function HomePage() {
     target.searchParams.delete("u");
     window.location.href = target.toString();
   }
-
-  const isPublicMode = typeof window !== "undefined" && new URLSearchParams(window.location.search).has("u");
 
   return (
     <main className="site-shell">
