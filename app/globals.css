@@ -1033,3 +1033,37 @@ body{
 .ab-card>.ab-markdown{font-size:.94rem}
 .ab-profile-head>.ab-markdown{max-width:70ch;margin:.5em auto 1em}
 .ab-preview>.ab-markdown{margin-top:1rem}
+
+/* Mobile layout polish: responsive cards, readable landing page, safe bottom nav. */
+@media(max-width:767px){
+ html,body{max-width:100%;overflow-x:hidden}
+ .ab-shell{width:100%!important;max-width:100%!important;margin:0!important;padding:0 0 calc(92px + env(safe-area-inset-bottom,0px))!important;overflow-x:clip}
+ .ab-shell.ab-app{display:block!important;padding-bottom:calc(100px + env(safe-area-inset-bottom,0px))!important}
+ .ab-shell .ab-appbar{display:none!important}
+ .ab-shell .ab-page{box-sizing:border-box;width:100%;max-width:100%;min-width:0;margin:0;padding:26px 18px 32px!important}
+ .ab-shell .ab-page h1{font-size:clamp(2.35rem,10vw,3.6rem);line-height:1.04;overflow-wrap:anywhere}
+ .ab-shell .ab-search{box-sizing:border-box;width:100%;min-width:0;max-width:100%;min-height:58px;font-size:16px}
+ .ab-shell .ab-tabs{display:flex;width:100%;max-width:100%;box-sizing:border-box;overflow-x:auto;overflow-y:hidden;gap:8px;padding:8px 0 12px;margin:12px 0 18px;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+ .ab-shell .ab-tabs>button{flex:0 0 auto;min-height:44px;padding:10px 16px;white-space:nowrap;font-size:15px}
+ .ab-shell .ab-grid{display:grid;grid-template-columns:minmax(0,1fr)!important;width:100%;max-width:100%;min-width:0;gap:14px}
+ .ab-shell .ab-card,.ab-shell .ab-panel,.ab-shell .ab-empty{box-sizing:border-box;width:100%;min-width:0;max-width:100%;overflow-wrap:anywhere}
+ .ab-shell .ab-card{padding:22px 18px}
+ .ab-shell .ab-card-actions,.ab-shell .ab-row,.ab-shell .ab-type-switch{display:flex;flex-wrap:wrap;gap:10px;max-width:100%}
+ .ab-shell .ab-mobile-nav{position:fixed!important;z-index:1000!important;left:0!important;right:0!important;bottom:0!important;box-sizing:border-box!important;display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:2px!important;width:100%!important;max-width:100%!important;padding:8px 8px calc(8px + env(safe-area-inset-bottom,0px))!important;margin:0!important;border-top:1px solid var(--ab-border);background:color-mix(in srgb,var(--ab-bg) 94%,transparent);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);box-shadow:0 -8px 28px color-mix(in srgb,var(--ab-text) 7%,transparent)}
+ .ab-shell .ab-mobile-nav>button{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:5px!important;box-sizing:border-box!important;min-width:0!important;min-height:58px!important;padding:7px 2px!important;border:0!important;border-radius:14px!important;background:transparent;color:var(--ab-muted);font:inherit;font-size:11px!important;line-height:1.15;white-space:nowrap}
+ .ab-shell .ab-mobile-nav>button svg{width:23px!important;height:23px!important;flex:0 0 23px}
+ .ab-shell .ab-mobile-nav>button.active{color:var(--ab-green);background:color-mix(in srgb,var(--ab-green) 11%,transparent);font-weight:650}
+ .ab-shell .ab-home-columns{display:flex!important;flex-direction:column!important;gap:18px!important}.ab-shell .ab-home-columns>*{width:100%;min-width:0}
+ .ab-shell .ab-home-rail{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+ .ab-shell .ab-form{padding:22px 18px}.ab-shell input,.ab-shell textarea,.ab-shell select{box-sizing:border-box;max-width:100%;font-size:16px}
+ .ab-shell .ab-landing{box-sizing:border-box;width:100%;max-width:100%;padding:68px 22px 56px!important;min-height:0!important}
+ .ab-shell .ab-landing h1{font-size:clamp(2.7rem,12vw,4.6rem)!important;line-height:.98!important;letter-spacing:-.055em;overflow-wrap:anywhere}
+ .ab-shell .ab-landing>p{font-size:16px;line-height:1.7}
+ .ab-shell .ab-landing .ab-row{display:flex;flex-direction:column;align-items:stretch;gap:10px}.ab-shell .ab-landing .ab-row .ab-button{width:100%;justify-content:center}
+ .ab-shell .ab-marketing-header{box-sizing:border-box;display:flex!important;align-items:center;justify-content:space-between;gap:8px;width:100%;min-width:0;padding:12px 12px!important}
+ .ab-shell .ab-marketing-header .ab-brand{font-size:13px;white-space:nowrap}.ab-shell .ab-marketing-header nav{display:flex;align-items:center;justify-content:flex-end;gap:3px;min-width:0}
+ .ab-shell .ab-marketing-header nav .ab-button{min-height:38px;padding:8px 7px;font-size:10px;white-space:nowrap}
+ .ab-shell .ab-feature-grid{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:0!important;width:100%;padding:0 22px 26px!important;box-sizing:border-box}
+ .ab-shell .ab-feature-grid>article{padding:24px 0!important;border-top:1px solid var(--ab-border)}.ab-shell .ab-feature-grid h2{font-size:1.4rem;line-height:1.2}
+}
+@media(max-width:380px){.ab-shell .ab-mobile-nav{padding-left:4px!important;padding-right:4px!important}.ab-shell .ab-mobile-nav>button{font-size:10px!important}.ab-shell .ab-page{padding-left:14px!important;padding-right:14px!important}.ab-shell .ab-marketing-header .ab-brand{font-size:12px}.ab-shell .ab-marketing-header nav .ab-button{padding-left:6px;padding-right:6px}}
