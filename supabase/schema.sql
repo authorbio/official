@@ -208,3 +208,18 @@ create index if not exists reviews_book_idx on public.reviews(book_id,created_at
 create index if not exists reviews_service_idx on public.reviews(service_id,created_at desc);
 create index if not exists follows_following_idx on public.follows(following_id);
 -- Keep secrets out of browser code: never use service_role or sb_secret in NEXT_PUBLIC variables.
+
+
+-- Public book-cover storage. Run this migration in the Supabase SQL Editor.
+insert into storage.buckets (id,name,public,file_size_limit,allowed_mime_types)
+values ('book-covers','book-covers',true,8388608,array['image/png','image/jpeg','image/webp','image/gif','image/avif'])
+on conflict (id) do update set public=true,file_size_limit=8388608,allowed_mime_types=array['image/png','image/jpeg','image/webp','image/gif','image/avif'];
+
+drop policy if exists "Public can view book covers" on storage.objects;
+create policy "Public can view book covers" on storage.objects for select using (bucket_id='book-covers');
+drop policy if exists "Signed-in users upload book covers to own folder" on storage.objects;
+create policy "Signed-in users upload book covers to own folder" on storage.objects for insert to authenticated with check (bucket_id='book-covers' and (storage.foldername(name))[1]=auth.uid()::text);
+drop policy if exists "Users update own book covers" on storage.objects;
+create policy "Users update own book covers" on storage.objects for update to authenticated using (bucket_id='book-covers' and (storage.foldername(name))[1]=auth.uid()::text) with check (bucket_id='book-covers' and (storage.foldername(name))[1]=auth.uid()::text);
+drop policy if exists "Users delete own book covers" on storage.objects;
+create policy "Users delete own book covers" on storage.objects for delete to authenticated using (bucket_id='book-covers' and (storage.foldername(name))[1]=auth.uid()::text);
