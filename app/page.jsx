@@ -13,7 +13,8 @@ export default function HomePage() {
   const [session, setSession] = useState(null);
   const [profile, setProfile] = useState(null);
   const [profiles, setProfiles] = useState([]);
-  const [works, setWorks] = useState([]);\n  const [allWorks, setAllWorks] = useState([]);
+  const [works, setWorks] = useState([]);
+  const [allWorks, setAllWorks] = useState([]);
   const [publicProfile, setPublicProfile] = useState(null);
   const [publicWorks, setPublicWorks] = useState([]);
   const [reviews, setReviews] = useState([]);
@@ -61,9 +62,13 @@ export default function HomePage() {
 
   const loadReviews = useCallback(async () => {
     if (!supabase) return;
-    const { data, error } = await supabase.from("reviews").select("id, rating, body, created_at, reviewer_id, work_id, works(title, user_id), profiles!reviews_reviewer_id_fkey(username, display_name)").order("created_at", { ascending: false }).limit(100);
+    const [{ data, error }, { data: all, error: worksError }] = await Promise.all([
+      supabase.from("reviews").select("id, rating, body, created_at, reviewer_id, work_id, works(title, user_id), profiles!reviews_reviewer_id_fkey(username, display_name)").order("created_at", { ascending: false }).limit(100),
+      supabase.from("works").select("id, title, user_id").order("title").limit(500)
+    ]);
     if (error) { setStatus(error.message); return; }
-    setReviews(data || []);
+    if (worksError) setStatus(worksError.message);
+    setReviews(data || []); setAllWorks(all || []);
   }, []);
 
   const navigate = useCallback((next, usernameArg = "") => {
