@@ -1067,3 +1067,21 @@ body{
  .ab-shell .ab-feature-grid>article{padding:24px 0!important;border-top:1px solid var(--ab-border)}.ab-shell .ab-feature-grid h2{font-size:1.4rem;line-height:1.2}
 }
 @media(max-width:380px){.ab-shell .ab-mobile-nav{padding-left:4px!important;padding-right:4px!important}.ab-shell .ab-mobile-nav>button{font-size:10px!important}.ab-shell .ab-page{padding-left:14px!important;padding-right:14px!important}.ab-shell .ab-marketing-header .ab-brand{font-size:12px}.ab-shell .ab-marketing-header nav .ab-button{padding-left:6px;padding-right:6px}}
+
+
+/* Mobile More sheet: exposes secondary routes without overcrowding the tab bar. */
+@media(max-width:767px){
+ .ab-shell .ab-mobile-more-backdrop{position:fixed;inset:0;z-index:1001;border:0;background:rgba(13,18,32,.36);backdrop-filter:blur(3px)}
+ .ab-shell .ab-mobile-more{position:fixed;left:12px;right:12px;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:1002;box-sizing:border-box;display:flex;flex-direction:column;gap:7px;padding:12px 14px 16px;border:1px solid var(--ab-border);border-radius:22px;background:var(--ab-bg);box-shadow:0 18px 60px rgba(15,23,42,.2);animation:ab-mobile-sheet-in .18s ease-out}
+ .ab-shell .ab-mobile-more-handle{width:36px;height:4px;margin:0 auto 5px;border-radius:8px;background:var(--ab-border)}
+ .ab-shell .ab-mobile-more-title{padding:4px 5px 8px;font-size:19px;font-weight:700;color:var(--ab-text)}
+ .ab-shell .ab-mobile-more>button{display:flex;align-items:center;gap:14px;width:100%;min-height:48px;padding:10px 12px;border:0;border-radius:12px;background:transparent;color:var(--ab-text);text-align:left;font:inherit;font-size:15px}
+ .ab-shell .ab-mobile-more>button:active{background:var(--ab-soft)}
+ .ab-shell .ab-mobile-more>button .ab-icon{display:flex;align-items:center;justify-content:center;width:24px;height:24px;flex:0 0 24px}
+ .ab-shell .ab-mobile-more>button .ab-icon svg{width:22px;height:22px}
+ .ab-shell .ab-mobile-more>button.ab-mobile-more-signout{margin-top:4px;border-top:1px solid var(--ab-border);border-radius:0;padding-top:14px;color:var(--ab-danger,#c74444);font-weight:650}
+ .ab-shell .ab-mobile-nav{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+ .ab-shell .ab-mobile-nav>button{min-height:62px!important}
+ .ab-shell .ab-mobile-nav>button span{font-size:11px;letter-spacing:0}
+}
+@keyframes ab-mobile-sheet-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
