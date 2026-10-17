@@ -218,7 +218,7 @@ body{background:radial-gradient(ellipse at 78% 4%,#edf2e7 0,transparent 34%),var
 .ab-shell .ab-button:active,.ab-shell .ab-nav:active{transform:scale(.98)}
 .ab-shell .ab-success-modal{animation:ab-modal-in .32s cubic-bezier(.2,.8,.2,1) both}
 .ab-confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden;border-radius:inherit}
-.ab-confetti span{position:absolute;left:var(--x);top:45%;width:7px;height:12px;border-radius:2px;background:hsl(calc(var(--i) * 47),72%,56%);opacity:0;animation:ab-confetti-burst 1.35s cubic-bezier(.12,.65,.25,1) both;animation-delay:calc(var(--i) * 12ms)}
+.ab-confetti span{position:absolute;left:var(--x);top:45%;width:7px;height:12px;border-radius:2px;background:hsl(var(--hue),72%,56%);opacity:0;animation:ab-confetti-burst 1.35s cubic-bezier(.12,.65,.25,1) both;animation-delay:calc(var(--i) * 12ms)}
 @keyframes ab-confetti-burst{0%{opacity:0;transform:translateY(0) rotate(0)}12%{opacity:1}100%{opacity:0;transform:translateY(-145px) rotate(320deg)}}
 @keyframes ab-modal-in{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
 .ab-success-modal{position:relative;overflow:hidden}
