@@ -8,6 +8,7 @@ create table if not exists public.profiles (
  bio text not null default '',
  avatar_url text not null default '',
  account_type text not null default 'author',
+ user_type text not null default 'author',
  headline text not null default '',
  genres text[] not null default '{}',
  website_url text not null default '',
@@ -18,6 +19,10 @@ create table if not exists public.profiles (
 );
 -- Existing projects may have created profiles before these columns existed.
 alter table public.profiles add column if not exists account_type text not null default 'author';
+alter table public.profiles add column if not exists user_type text;
+update public.profiles set user_type=coalesce(nullif(btrim(user_type),''),nullif(btrim(account_type),''),'author') where user_type is null or btrim(user_type)='';
+alter table public.profiles alter column user_type set default 'author';
+alter table public.profiles alter column user_type set not null;
 alter table public.profiles add column if not exists headline text not null default '';
 alter table public.profiles add column if not exists genres text[] not null default '{}';
 alter table public.profiles add column if not exists website_url text not null default '';
@@ -28,6 +33,8 @@ alter table public.profiles drop constraint if exists profiles_username_check;
 alter table public.profiles add constraint profiles_username_check check (username ~ '^[a-z0-9_]{3,30}$');
 alter table public.profiles drop constraint if exists profiles_account_type_check;
 alter table public.profiles add constraint profiles_account_type_check check (account_type in ('reader','author','editor','proofreader','translator','illustrator','publisher','designer','other'));
+alter table public.profiles drop constraint if exists profiles_user_type_check;
+alter table public.profiles add constraint profiles_user_type_check check (user_type in ('reader','author','editor','proofreader','translator','illustrator','publisher','designer','other'));
 
 -- Legacy works table retained for backwards compatibility.
 create table if not exists public.works (
@@ -183,11 +190,11 @@ declare u text; n text; a text;
 begin
  u:=lower(trim(coalesce(new.raw_user_meta_data->>'username','')));
  n:=trim(coalesce(new.raw_user_meta_data->>'display_name',''));
- a:=coalesce(new.raw_user_meta_data->>'account_type','author');
+ a:=coalesce(new.raw_user_meta_data->>'user_type',new.raw_user_meta_data->>'account_type','author');
  if u !~ '^[a-z0-9_]{3,30}$' then raise exception 'Username must be 3-30 characters using lowercase letters, numbers, or underscores'; end if;
  if n='' then n:=u; end if;
  if a not in ('reader','author','editor','proofreader','translator','illustrator','publisher','designer','other') then a:='author'; end if;
- insert into public.profiles(id,username,display_name,account_type) values(new.id,u,n,a);
+ insert into public.profiles(id,username,display_name,account_type,user_type) values(new.id,u,n,a,a);
  return new;
 end; $$;
 drop trigger if exists on_auth_user_created_author_profile on auth.users;
