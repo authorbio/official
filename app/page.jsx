@@ -23,7 +23,8 @@ function NavIcon({ name, size = 20 }) {
   };
   return <svg {...common}>{paths[name] || paths.home}</svg>;
 }
-\nexport default function HomePage() {
+
+export default function HomePage() {
   const [route, setRoute] = useState("home");
   const [navOpen, setNavOpen] = useState(true);
   const [session, setSession] = useState(null);
