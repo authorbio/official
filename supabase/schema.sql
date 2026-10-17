@@ -16,6 +16,8 @@ create table if not exists public.profiles (
  created_at timestamptz not null default now(),
  updated_at timestamptz not null default now()
 );
+-- Existing projects may have created profiles before these columns existed.
+alter table public.profiles add column if not exists account_type text not null default 'author';
 alter table public.profiles add column if not exists headline text not null default '';
 alter table public.profiles add column if not exists genres text[] not null default '{}';
 alter table public.profiles add column if not exists website_url text not null default '';
@@ -128,7 +130,6 @@ create unique index if not exists reviews_one_per_book_per_reader on public.revi
 create unique index if not exists reviews_one_per_service_per_reader on public.reviews(reviewer_id,service_id) where service_id is not null;
 
 -- Legacy reviews may target work_id. New reviews use exactly one item reference.
-
 alter table public.profiles enable row level security;
 alter table public.works enable row level security;
 alter table public.posts enable row level security;
