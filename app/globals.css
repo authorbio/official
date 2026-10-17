@@ -864,3 +864,44 @@ body{
 .ab-shell .ab-sidebar:not(:hover):not(:focus-within) .ab-nav .ab-icon{
   margin:0;
 }
+
+/* Final collapsed-rail icon alignment: prevent inherited button/SVG clipping. */
+.ab-shell .ab-sidebar:not(:hover):not(:focus-within){
+  overflow:visible !important;
+}
+.ab-shell .ab-sidebar:not(:hover):not(:focus-within) .ab-nav{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  box-sizing:border-box !important;
+  width:48px !important;
+  min-width:48px !important;
+  max-width:48px !important;
+  height:48px !important;
+  min-height:48px !important;
+  padding:12px !important;
+  margin:0 auto 4px !important;
+  overflow:visible !important;
+  transform:none;
+}
+.ab-shell .ab-sidebar:not(:hover):not(:focus-within) .ab-nav .ab-icon{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  box-sizing:content-box !important;
+  width:24px !important;
+  min-width:24px !important;
+  height:24px !important;
+  flex:0 0 24px !important;
+  margin:0 !important;
+  overflow:visible !important;
+}
+.ab-shell .ab-sidebar:not(:hover):not(:focus-within) .ab-nav .ab-icon svg{
+  display:block !important;
+  width:22px !important;
+  min-width:22px !important;
+  max-width:none !important;
+  height:22px !important;
+  overflow:visible !important;
+  flex:0 0 22px !important;
+}
