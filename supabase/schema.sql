@@ -144,19 +144,18 @@ create policy "Users can update their own works" on public.works for update to a
 drop policy if exists "Users can delete their own works" on public.works;
 create policy "Users can delete their own works" on public.works for delete to authenticated using(auth.uid()=user_id);
 
-do $$ declare t text; begin
- foreach t in array array['posts','books','services'] loop
-  execute format('drop policy if exists "Public published items" on public.%I',t);
-  execute format('create policy "Public published items" on public.%I for select using (status = ''published'' or author_id = auth.uid() or provider_id = auth.uid())',t);
-  if t='posts' or t='books' then
-   execute format('drop policy if exists "Owners manage content" on public.%I',t);
-   execute format('create policy "Owners manage content" on public.%I for all to authenticated using (author_id=auth.uid()) with check (author_id=auth.uid())',t);
-  else
-   execute format('drop policy if exists "Owners manage content" on public.%I',t);
-   execute format('create policy "Owners manage content" on public.%I for all to authenticated using (provider_id=auth.uid()) with check (provider_id=auth.uid())',t);
-  end if;
- end loop;
-end $$;
+drop policy if exists "Public published items" on public.posts;
+create policy "Public published items" on public.posts for select using (status='published' or author_id=auth.uid());
+drop policy if exists "Owners manage content" on public.posts;
+create policy "Owners manage content" on public.posts for all to authenticated using(author_id=auth.uid()) with check(author_id=auth.uid());
+drop policy if exists "Public published items" on public.books;
+create policy "Public published items" on public.books for select using(status='published' or author_id=auth.uid());
+drop policy if exists "Owners manage content" on public.books;
+create policy "Owners manage content" on public.books for all to authenticated using(author_id=auth.uid()) with check(author_id=auth.uid());
+drop policy if exists "Public published items" on public.services;
+create policy "Public published items" on public.services for select using((status='published' and is_active=true) or provider_id=auth.uid());
+drop policy if exists "Owners manage content" on public.services;
+create policy "Owners manage content" on public.services for all to authenticated using(provider_id=auth.uid()) with check(provider_id=auth.uid());
 drop policy if exists "Follows are public" on public.follows;
 create policy "Follows are public" on public.follows for select using(true);
 drop policy if exists "Users manage own follows" on public.follows;
