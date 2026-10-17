@@ -120,6 +120,11 @@ alter table public.reviews add column if not exists service_id uuid references p
 alter table public.reviews add column if not exists title text not null default '';
 alter table public.reviews add column if not exists contains_spoilers boolean not null default false;
 alter table public.reviews add column if not exists updated_at timestamptz not null default now();
+alter table public.reviews drop constraint if exists reviews_exactly_one_target;
+alter table public.reviews add constraint reviews_exactly_one_target check (num_nonnulls(work_id,book_id,service_id)=1);
+create unique index if not exists reviews_one_per_book_per_reader on public.reviews(reviewer_id,book_id) where book_id is not null;
+create unique index if not exists reviews_one_per_service_per_reader on public.reviews(reviewer_id,service_id) where service_id is not null;
+
 -- Legacy reviews may target work_id. New reviews use exactly one item reference.
 
 alter table public.profiles enable row level security;
