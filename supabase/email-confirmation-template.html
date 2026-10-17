@@ -1,0 +1,28 @@
+<!-- Copy this HTML into Supabase Dashboard > Authentication > Email Templates > Confirm signup.
+     Keep {{ .ConfirmationURL }} as the button URL; Supabase uses it to verify the address before redirecting. -->
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent">Confirm your email to finish creating your AuthorBIO account.</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0;padding:36px 12px;background:#f5f6f1;font-family:Arial,Helvetica,sans-serif;color:#20251f">
+  <tr><td align="center">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#ffffff;border:1px solid #e3e8df;border-radius:18px;overflow:hidden">
+      <tr><td style="padding:28px 32px 24px;border-bottom:1px solid #edf0e9">
+        <div style="font-size:23px;font-weight:700;letter-spacing:-.7px;color:#243b2b">A<span style="color:#4e7655">.</span> AuthorBIO</div>
+        <div style="margin-top:8px;font-size:10px;letter-spacing:2px;color:#71806f">YOUR CREATIVE WORLD, CONNECTED</div>
+      </td></tr>
+      <tr><td style="padding:38px 32px 20px">
+        <div style="display:inline-block;padding:7px 10px;background:#edf3e9;border-radius:20px;color:#42684a;font-size:10px;font-weight:bold;letter-spacing:1.3px">ONE QUICK STEP</div>
+        <h1 style="margin:20px 0 14px;font-size:32px;line-height:1.15;letter-spacing:-1px;font-weight:700;color:#20251f">Verify your email.</h1>
+        <p style="margin:0 0 14px;font-size:15px;line-height:1.8;color:#626b61">Thanks for joining AuthorBIO. Confirm this email address to activate your account and start building your page for your writing, reading, or creative services.</p>
+        <p style="margin:0 0 26px;font-size:13px;line-height:1.7;color:#7b8378">If you didn't create an AuthorBIO account, you can safely ignore this message.</p>
+        <table role="presentation" cellpadding="0" cellspacing="0"><tr><td bgcolor="#345a45" style="border-radius:10px">
+          <a href="{{ .ConfirmationURL }}" style="display:inline-block;padding:15px 22px;color:#ffffff;text-decoration:none;font-size:14px;font-weight:bold">Verify email address &nbsp;→</a>
+        </td></tr></table>
+        <p style="margin:28px 0 6px;font-size:11px;line-height:1.7;color:#858b81">Button not working? Copy this link into your browser:</p>
+        <p style="margin:0 0 10px;font-size:11px;line-height:1.7;overflow-wrap:anywhere"><a href="{{ .ConfirmationURL }}" style="color:#345a45">{{ .ConfirmationURL }}</a></p>
+      </td></tr>
+      <tr><td style="padding:20px 32px;background:#f8f9f6;border-top:1px solid #edf0e9">
+        <p style="margin:0;font-size:11px;line-height:1.8;color:#7b8378">AuthorBIO · Your work deserves a place of its own.</p>
+        <p style="margin:5px 0 0;font-size:10px;color:#9aa095">This is an automated account email. Please do not reply.</p>
+      </td></tr>
+    </table>
+  </td></tr>
+</table>
