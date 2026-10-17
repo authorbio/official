@@ -480,3 +480,211 @@ body{
    filter: none !important;
  }
 }
+
+
+/* UI refinement pass: navigation clarity, spacing, contrast and responsive polish */
+.ab-shell .ab-sidebar{
+  padding:20px 12px 18px 0;
+  overflow:visible;
+  isolation:isolate;
+}
+.ab-shell .ab-sidebar > .ab-brand{
+  position:relative;
+  z-index:1;
+  min-height:40px;
+  max-width:calc(100% - 42px);
+  padding-right:2px;
+  overflow:hidden;
+}
+.ab-shell .ab-sidebar > .ab-button.collapse{
+  top:18px;
+  right:4px;
+  transform:none;
+  z-index:3;
+  width:32px;
+  min-width:32px;
+  min-height:32px;
+  padding:4px;
+  border-radius:9px;
+  box-shadow:0 2px 8px color-mix(in srgb,var(--ab-text) 8%,transparent);
+}
+.ab-shell .ab-sidebar > .ab-button.collapse:hover{
+  transform:translateY(-1px);
+}
+.ab-shell .ab-nav{
+  position:relative;
+  min-height:46px;
+  gap:13px;
+  padding:10px 12px;
+  border-radius:10px;
+  color:var(--ab-muted);
+  background:transparent;
+  box-shadow:none;
+  transition:color .22s ease,background-color .22s ease,border-color .22s ease,transform .22s ease;
+}
+.ab-shell .ab-nav .ab-icon{
+  width:22px;
+  height:22px;
+  flex:0 0 22px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+.ab-shell .ab-nav:hover{
+  color:var(--ab-text);
+  background:color-mix(in srgb,var(--ab-green) 8%,var(--ab-surface));
+  border-color:transparent;
+  transform:translateX(1px);
+}
+.ab-shell .ab-nav.active{
+  color:var(--ab-green);
+  background:transparent;
+  border-color:transparent;
+  box-shadow:inset 0 -2px var(--ab-green);
+  border-radius:8px 8px 2px 2px;
+}
+.ab-shell .ab-appbar{
+  min-height:64px;
+  padding:0 2px 0 0;
+  background:color-mix(in srgb,var(--ab-bg) 88%,transparent);
+  backdrop-filter:blur(24px) saturate(145%);
+  -webkit-backdrop-filter:blur(24px) saturate(145%);
+}
+.ab-shell .ab-appbar > strong{
+  color:var(--ab-text);
+  font-size:14px;
+  letter-spacing:-.01em;
+}
+.ab-shell .ab-appbar > div{
+  align-items:center;
+  gap:8px;
+}
+.ab-shell .ab-button{
+  min-height:44px;
+  border-radius:11px;
+  font-weight:650;
+  transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s ease,background-color .22s ease,border-color .22s ease,color .22s ease,filter .22s ease;
+}
+.ab-shell .ab-button:not(.secondary):not(.ghost):not(.danger):not(.collapse){
+  background:linear-gradient(115deg,var(--ab-green),color-mix(in srgb,var(--ab-green) 68%,#8d72ff));
+  border-color:transparent;
+  color:#fff;
+  box-shadow:0 7px 20px color-mix(in srgb,var(--ab-green) 22%,transparent);
+}
+:root[data-theme="dark"] .ab-shell .ab-button:not(.secondary):not(.ghost):not(.danger):not(.collapse){
+  color:#101722;
+}
+.ab-shell .ab-button.secondary{
+  color:var(--ab-text);
+  background:color-mix(in srgb,var(--ab-surface) 92%,var(--ab-soft));
+  border-color:var(--ab-border);
+}
+.ab-shell .ab-button.ghost{
+  color:var(--ab-text);
+  background:transparent;
+  border-color:transparent;
+  box-shadow:none;
+}
+.ab-shell .ab-button.secondary:hover,
+.ab-shell .ab-button.ghost:hover{
+  background:color-mix(in srgb,var(--ab-green) 9%,var(--ab-surface));
+  border-color:color-mix(in srgb,var(--ab-green) 30%,var(--ab-border));
+}
+.ab-shell .ab-page{
+  animation:ab-page-enter .32s cubic-bezier(.16,1,.3,1) both;
+}
+.ab-shell .ab-page > .ab-panel,
+.ab-shell .ab-page > .ab-card,
+.ab-shell .ab-page > .ab-grid > .ab-card{
+  animation:ab-content-enter .34s cubic-bezier(.16,1,.3,1) both;
+}
+.ab-shell .ab-page > h1{
+  max-width:900px;
+  line-height:1.08;
+  text-wrap:balance;
+}
+.ab-shell .ab-home-columns{
+  align-items:start;
+  gap:clamp(18px,2.2vw,30px);
+}
+.ab-shell .ab-section-heading{
+  flex-wrap:wrap;
+}
+.ab-shell .ab-section-heading h2,
+.ab-shell .ab-home-rail h2{
+  color:var(--ab-text);
+}
+.ab-shell .ab-panel,
+.ab-shell .ab-card,
+.ab-shell .ab-profile-head,
+.ab-shell .ab-preview,
+.ab-shell .ab-empty,
+.ab-shell .ab-skeleton{
+  border-color:color-mix(in srgb,var(--ab-border) 92%,var(--ab-muted));
+  box-shadow:0 10px 30px color-mix(in srgb,var(--ab-text) 7%,transparent);
+}
+.ab-shell .ab-empty{
+  border-style:solid;
+  background:linear-gradient(145deg,color-mix(in srgb,var(--ab-surface) 95%,var(--ab-soft)),var(--ab-surface));
+}
+.ab-shell .ab-empty p,
+.ab-shell .ab-card p,
+.ab-shell .ab-card small,
+.ab-shell .ab-panel p,
+.ab-shell .ab-form label small{
+  color:var(--ab-muted);
+}
+.ab-shell :is(button,a,input,textarea,select,[tabindex]):focus-visible{
+  outline:3px solid color-mix(in srgb,var(--ab-green) 85%,#8d72ff);
+  outline-offset:3px;
+  box-shadow:0 0 0 5px color-mix(in srgb,var(--ab-green) 14%,transparent);
+}
+.ab-shell .ab-form input:focus-visible,
+.ab-shell .ab-form textarea:focus-visible,
+.ab-shell .ab-form select:focus-visible,
+.ab-shell .ab-editor input:focus-visible,
+.ab-shell .ab-editor textarea:focus-visible,
+.ab-shell .ab-editor select:focus-visible,
+.ab-shell .ab-search:focus-visible{
+  outline:2px solid var(--ab-green);
+  outline-offset:1px;
+}
+.ab-shell .ab-mobile-nav button{
+  min-height:48px;
+  border-radius:10px;
+  transition:color .2s ease,background-color .2s ease,transform .2s ease;
+}
+.ab-shell .ab-mobile-nav button.active{
+  background:color-mix(in srgb,var(--ab-green) 9%,transparent);
+}
+.ab-shell .ab-sidebar-bottom .ab-button,
+.ab-shell .ab-card-actions .ab-button,
+.ab-shell .ab-appbar .ab-button{
+  min-height:42px;
+}
+@media(max-width:1023px){
+  .ab-shell .ab-sidebar > .ab-brand{max-width:36px;padding-right:0}
+  .ab-shell .ab-sidebar > .ab-button.collapse{display:none}
+  .ab-shell .ab-nav{justify-content:center;padding:10px 5px}
+}
+@media(max-width:767px){
+  .ab-shell .ab-appbar{padding:0;gap:8px}
+  .ab-shell .ab-appbar > strong{font-size:13px}
+  .ab-shell .ab-appbar > div{gap:4px}
+  .ab-shell .ab-appbar .ab-button{min-height:42px;padding:8px 10px}
+  .ab-shell .ab-page{padding-top:30px}
+  .ab-shell .ab-page > h1{font-size:clamp(38px,10vw,52px);letter-spacing:-.035em;line-height:1.1}
+  .ab-shell .ab-section-heading{gap:8px}
+  .ab-shell .ab-empty{padding:36px 18px}
+  .ab-shell .ab-mobile-nav button{min-height:48px}
+}
+@media(prefers-reduced-motion:reduce){
+  .ab-shell .ab-page,
+  .ab-shell .ab-page > .ab-panel,
+  .ab-shell .ab-page > .ab-card,
+  .ab-shell .ab-page > .ab-grid > .ab-card{animation:none!important;filter:none!important}
+  .ab-shell .ab-button,
+  .ab-shell .ab-nav,
+  .ab-shell .ab-card,
+  .ab-shell .ab-mobile-nav button{transition:none!important}
+}
