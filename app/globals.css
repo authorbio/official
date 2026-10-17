@@ -426,3 +426,57 @@ body{
   background:radial-gradient(ellipse at 8% 0%,#a9f36d13,transparent 34%),radial-gradient(ellipse at 92% 5%,#8d72ff22,transparent 38%),radial-gradient(ellipse at 55% 100%,#2866c414,transparent 40%),var(--ab-bg);
  }
 }
+
+
+/* Smooth navigation + genuinely interpolated theme colors */
+@property --ab-bg { syntax: "<color>"; inherits: true; initial-value: #f5f6fb; }
+@property --ab-surface { syntax: "<color>"; inherits: true; initial-value: rgba(255,255,255,.82); }
+@property --ab-soft { syntax: "<color>"; inherits: true; initial-value: #e9edf8; }
+@property --ab-border { syntax: "<color>"; inherits: true; initial-value: #dce2f0; }
+@property --ab-text { syntax: "<color>"; inherits: true; initial-value: #18223a; }
+@property --ab-muted { syntax: "<color>"; inherits: true; initial-value: #65718a; }
+@property --ab-green { syntax: "<color>"; inherits: true; initial-value: #5367e8; }
+@property --ab-red { syntax: "<color>"; inherits: true; initial-value: #d94c70; }
+
+:root {
+ transition: --ab-bg .38s ease, --ab-surface .38s ease, --ab-soft .38s ease,
+   --ab-border .38s ease, --ab-text .38s ease, --ab-muted .38s ease,
+   --ab-green .38s ease, --ab-red .38s ease;
+}
+.ab-shell .ab-page {
+ animation: ab-page-enter .38s cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes ab-page-enter {
+ from { opacity: 0; transform: translate3d(0, 12px, 0); filter: blur(2px); }
+ to { opacity: 1; transform: translate3d(0, 0, 0); filter: blur(0); }
+}
+.ab-shell .ab-page > .ab-panel,
+.ab-shell .ab-page > .ab-card,
+.ab-shell .ab-page > .ab-grid > .ab-card {
+ animation: ab-content-enter .42s cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes ab-content-enter {
+ from { opacity: 0; transform: translateY(7px); }
+ to { opacity: 1; transform: translateY(0); }
+}
+.ab-shell button,
+.ab-shell a,
+.ab-shell input,
+.ab-shell textarea,
+.ab-shell select {
+ -webkit-tap-highlight-color: transparent;
+}
+.ab-shell button:focus-visible,
+.ab-shell a:focus-visible {
+ outline: 2px solid var(--ab-green);
+ outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+ .ab-shell .ab-page,
+ .ab-shell .ab-page > .ab-panel,
+ .ab-shell .ab-page > .ab-card,
+ .ab-shell .ab-page > .ab-grid > .ab-card {
+   animation: none !important;
+   filter: none !important;
+ }
+}
