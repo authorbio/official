@@ -414,3 +414,15 @@ body{
  body,.ab-shell *{transition:none!important;scroll-behavior:auto!important}
  .ab-card:hover,.ab-nav:hover,.ab-button:hover{transform:none!important}
 }
+
+
+@media(prefers-color-scheme:dark){
+ :root[data-theme="system"]{
+  --ab-bg:#090e1b;--ab-surface:rgba(20,29,51,.82);--ab-soft:#17233c;
+  --ab-border:#293652;--ab-text:#f0f4ff;--ab-muted:#9aa8c6;
+  --ab-green:#a9f36d;--ab-red:#ff7898;color-scheme:dark;
+ }
+ :root[data-theme="system"] body{
+  background:radial-gradient(ellipse at 8% 0%,#a9f36d13,transparent 34%),radial-gradient(ellipse at 92% 5%,#8d72ff22,transparent 38%),radial-gradient(ellipse at 55% 100%,#2866c414,transparent 40%),var(--ab-bg);
+ }
+}
