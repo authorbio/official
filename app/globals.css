@@ -828,3 +828,39 @@ body{
   .ab-shell .ab-sidebar *,
   .ab-shell .ab-appbar .ab-button{transition:none!important}
 }
+
+/* Navigation icon clipping fix: keep each icon fully inside the collapsed rail. */
+.ab-shell .ab-sidebar{
+  box-sizing:border-box;
+  min-width:0;
+}
+.ab-shell .ab-sidebar .ab-nav{
+  box-sizing:border-box;
+  min-width:0;
+  min-height:46px;
+}
+.ab-shell .ab-sidebar .ab-nav .ab-icon{
+  width:24px;
+  height:24px;
+  min-width:24px;
+  flex:0 0 24px;
+  overflow:visible;
+}
+.ab-shell .ab-sidebar .ab-nav .ab-icon svg{
+  display:block;
+  width:20px;
+  height:20px;
+  max-width:none;
+  flex-shrink:0;
+}
+.ab-shell .ab-sidebar:not(:hover):not(:focus-within) .ab-nav{
+  width:46px;
+  height:46px;
+  margin-left:auto;
+  margin-right:auto;
+  padding:10px;
+  gap:0;
+}
+.ab-shell .ab-sidebar:not(:hover):not(:focus-within) .ab-nav .ab-icon{
+  margin:0;
+}
