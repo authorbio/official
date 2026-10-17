@@ -998,3 +998,17 @@ body{
   }
   .ab-app{grid-template-columns:minmax(0,1fr) !important}
 }
+
+/* Align the expanded sidebar flush with the viewport's left edge. */
+.ab-shell{
+  max-width:none !important;
+  width:100% !important;
+  margin:0 !important;
+  padding-left:0 !important;
+  padding-right:0 !important;
+}
+.ab-shell .ab-app{
+  width:100%;
+  margin-left:0;
+  margin-right:0;
+}
