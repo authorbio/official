@@ -905,3 +905,96 @@ body{
   overflow:visible !important;
   flex:0 0 22px !important;
 }
+
+/* Permanent full-height, expanded desktop sidebar */
+.ab-app{
+  grid-template-columns:250px minmax(0,1fr) !important;
+  column-gap:28px !important;
+}
+.ab-shell .ab-sidebar,
+.ab-shell .ab-sidebar:hover,
+.ab-shell .ab-sidebar:focus-within{
+  position:sticky;
+  top:0;
+  align-self:start;
+  box-sizing:border-box;
+  width:250px !important;
+  min-width:250px !important;
+  height:100vh;
+  min-height:100vh;
+  padding:24px 16px 20px !important;
+  overflow-y:auto;
+  overflow-x:hidden;
+  background:var(--ab-bg);
+  border-right:1px solid var(--ab-border);
+  box-shadow:none;
+  z-index:20;
+  transition:none !important;
+}
+.ab-shell .ab-sidebar .ab-brand{
+  width:100%;
+  font-size:20px !important;
+  gap:10px;
+  margin-bottom:18px;
+}
+.ab-shell .ab-sidebar .ab-brand-label,
+.ab-shell .ab-sidebar .ab-nav-label,
+.ab-shell .ab-sidebar .ab-sidebar-bottom small{
+  opacity:1 !important;
+  width:auto !important;
+  transform:none !important;
+  overflow:visible;
+  pointer-events:auto;
+}
+.ab-shell .ab-sidebar .ab-nav,
+.ab-shell .ab-sidebar:not(:hover):not(:focus-within) .ab-nav{
+  display:flex;
+  justify-content:flex-start !important;
+  width:100% !important;
+  max-width:none !important;
+  height:auto !important;
+  min-height:46px;
+  margin:0 0 5px !important;
+  padding:11px 12px !important;
+  gap:12px !important;
+  overflow:visible !important;
+  white-space:nowrap;
+}
+.ab-shell .ab-sidebar .ab-nav .ab-icon,
+.ab-shell .ab-sidebar:not(:hover):not(:focus-within) .ab-nav .ab-icon{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:24px;
+  min-width:24px;
+  height:24px;
+  flex:0 0 24px;
+  margin:0;
+  overflow:visible;
+}
+.ab-shell .ab-sidebar .ab-nav .ab-icon svg{
+  width:22px;
+  height:22px;
+  flex:0 0 22px;
+  overflow:visible;
+}
+.ab-shell .ab-sidebar-bottom,
+.ab-shell .ab-sidebar:hover .ab-sidebar-bottom,
+.ab-shell .ab-sidebar:focus-within .ab-sidebar-bottom{
+  padding:14px 8px;
+  flex-wrap:wrap;
+  overflow:visible;
+}
+.ab-shell .ab-appbar{justify-content:flex-end}
+@media(max-width:1023px){
+  .ab-app{grid-template-columns:220px minmax(0,1fr) !important;column-gap:18px !important}
+  .ab-shell .ab-sidebar,.ab-shell .ab-sidebar:hover,.ab-shell .ab-sidebar:focus-within{
+    width:220px !important;min-width:220px !important;padding:20px 12px !important;
+  }
+}
+@media(max-width:767px){
+  .ab-shell .ab-sidebar,.ab-shell .ab-sidebar:hover,.ab-shell .ab-sidebar:focus-within{
+    display:none !important;
+  }
+  .ab-app{grid-template-columns:minmax(0,1fr) !important}
+}
