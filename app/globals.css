@@ -1158,3 +1158,197 @@ body{
 .ab-auth-boot .ab-boot-mark{font-family:Georgia,serif;font-size:clamp(24px,4vw,34px);font-weight:700;letter-spacing:-.04em;color:var(--ab-text,#172033);animation:ab-boot-pulse 1.1s ease-in-out infinite alternate}
 @keyframes ab-boot-pulse{from{opacity:.48}to{opacity:1}}
 @media(prefers-reduced-motion:reduce){.ab-auth-boot .ab-boot-mark{animation:none}}
+
+
+/* UX refinement: predictable action sizing, readable contrast, and a compact mobile footer/nav. */
+.ab-shell .ab-type-switch{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+  align-items:stretch;
+  width:100%;
+  margin:20px 0 22px;
+}
+.ab-shell .ab-type-switch>.ab-button{
+  width:100%;
+  min-width:0;
+  min-height:46px;
+  padding:11px 12px;
+  white-space:normal;
+  text-align:center;
+  line-height:1.25;
+}
+.ab-shell .ab-filter-row>.ab-button{
+  flex:0 0 auto!important;
+  width:auto!important;
+  min-width:max-content!important;
+  max-width:100%;
+  min-height:44px;
+  white-space:nowrap!important;
+  writing-mode:horizontal-tb!important;
+  overflow-wrap:normal!important;
+  word-break:normal!important;
+  padding-left:16px;
+  padding-right:16px;
+}
+.ab-shell .ab-card-actions{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:flex-start;
+  gap:8px;
+}
+.ab-shell .ab-card-actions>.ab-button{
+  flex:0 1 auto;
+  min-width:90px;
+  min-height:40px;
+  padding:9px 12px;
+  white-space:nowrap;
+}
+.ab-shell .ab-button.secondary{
+  color:var(--ab-text)!important;
+  border-color:var(--ab-border);
+  background:var(--ab-soft);
+}
+.ab-shell .ab-button.secondary:hover{
+  color:var(--ab-text)!important;
+  background:color-mix(in srgb,var(--ab-green) 12%,var(--ab-surface));
+}
+.ab-shell .ab-editor .ab-subtitle{
+  color:var(--ab-text);
+  font-size:19px;
+}
+.ab-shell .ab-editor .ab-subtitle::placeholder{
+  color:var(--ab-muted);
+  opacity:1;
+  font-style:italic;
+}
+.ab-shell .ab-editor .ab-title-label input{
+  font-family:var(--ab-serif);
+  font-size:clamp(24px,3.2vw,36px);
+  line-height:1.2;
+  font-weight:500;
+}
+.ab-shell .ab-editor-actions>.ab-button{
+  min-height:44px;
+}
+.ab-shell .ab-footer{
+  gap:10px;
+  padding-top:14px;
+  padding-bottom:14px;
+}
+.ab-shell .ab-footer .ab-brand{
+  font-size:14px;
+}
+.ab-shell .ab-footer small{
+  line-height:1.45;
+}
+@media(min-width:768px){
+  .ab-shell .ab-editor-toolbar{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .ab-shell .ab-editor-toolbar>span[role="status"]{
+    flex:1 1 auto;
+    min-width:180px;
+  }
+  .ab-shell .ab-editor-toolbar>.ab-button{
+    flex:0 0 auto;
+  }
+}
+@media(max-width:767px){
+  .ab-shell .ab-type-switch{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:7px;
+    margin:16px 0 20px;
+  }
+  .ab-shell .ab-type-switch>.ab-button{
+    min-height:48px;
+    padding:9px 5px;
+    font-size:12px;
+    overflow-wrap:normal;
+    word-break:normal;
+  }
+  .ab-shell .ab-filter-row{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .ab-shell .ab-filter-row>.ab-spacer{
+    display:none;
+  }
+  .ab-shell .ab-filter-row>.ab-button{
+    flex:0 0 auto!important;
+    width:auto!important;
+    min-width:max-content!important;
+    max-width:100%;
+    margin-left:auto;
+    font-size:12px;
+    padding:10px 12px;
+  }
+  .ab-shell .ab-card-actions{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    align-items:stretch!important;
+    gap:8px!important;
+  }
+  .ab-shell .ab-card-actions>.ab-button{
+    width:100%;
+    min-width:0;
+    max-width:100%;
+    min-height:42px;
+    padding:9px 6px;
+    font-size:12px;
+    white-space:normal;
+    overflow-wrap:normal;
+    word-break:normal;
+  }
+  .ab-shell .ab-editor-toolbar>.ab-button:last-child{
+    grid-column:1/-1;
+  }
+  .ab-shell .ab-footer{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:5px!important;
+    padding:12px 14px calc(76px + env(safe-area-inset-bottom,0px))!important;
+    margin:0!important;
+    min-height:0!important;
+    text-align:center!important;
+  }
+  .ab-shell .ab-footer .ab-brand{margin:0 auto;font-size:13px}
+  .ab-shell .ab-footer small{font-size:9px;line-height:1.35}
+  .ab-shell .ab-mobile-nav{
+    height:calc(58px + env(safe-area-inset-bottom,0px))!important;
+    padding:4px 8px calc(4px + env(safe-area-inset-bottom,0px))!important;
+    grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  }
+  .ab-shell .ab-mobile-nav>button{
+    min-height:48px!important;
+    padding:4px 2px!important;
+    gap:3px!important;
+    border-radius:10px!important;
+    font-size:10px!important;
+  }
+  .ab-shell .ab-mobile-nav>button svg{
+    width:20px!important;
+    height:20px!important;
+    flex-basis:20px!important;
+  }
+  .ab-shell .ab-mobile-nav>button:nth-child(3) .ab-icon{
+    width:30px!important;
+    height:30px!important;
+    margin-top:0!important;
+    box-shadow:none!important;
+  }
+  .ab-shell .ab-mobile-nav>button:nth-child(3) span:last-child{margin-top:0!important}
+}
+@media(max-width:380px){
+  .ab-shell .ab-type-switch{gap:5px}
+  .ab-shell .ab-type-switch>.ab-button{font-size:11px;padding-left:3px;padding-right:3px}
+  .ab-shell .ab-filter-row>.ab-button{padding-left:9px;padding-right:9px}
+}
