@@ -1352,3 +1352,51 @@ body{
   .ab-shell .ab-type-switch>.ab-button{font-size:11px;padding-left:3px;padding-right:3px}
   .ab-shell .ab-filter-row>.ab-button{padding-left:9px;padding-right:9px}
 }
+
+
+/* Layout recovery: keep the site inside the viewport at every breakpoint. */
+html,body{width:100%;max-width:100%;margin:0;overflow-x:clip}
+.ab-shell{
+  box-sizing:border-box!important;
+  width:100%!important;
+  max-width:1600px!important;
+  margin-inline:auto!important;
+  padding-left:clamp(16px,4vw,64px)!important;
+  padding-right:clamp(16px,4vw,64px)!important;
+}
+.ab-shell .ab-marketing-header,
+.ab-shell .ab-landing,
+.ab-shell .ab-feature-grid{
+  min-width:0;
+  max-width:100%;
+}
+.ab-shell .ab-landing{
+  width:100%;
+  overflow-wrap:anywhere;
+}
+.ab-shell .ab-landing h1{
+  max-width:100%;
+  overflow-wrap:normal;
+  word-break:normal;
+}
+.ab-shell .ab-feature-grid{
+  box-sizing:border-box;
+}
+@media(max-width:767px){
+  .ab-shell{
+    padding-left:17px!important;
+    padding-right:17px!important;
+  }
+  .ab-shell .ab-marketing-header{
+    padding-left:0!important;
+    padding-right:0!important;
+  }
+  .ab-shell .ab-landing{
+    padding-left:5px!important;
+    padding-right:5px!important;
+  }
+  .ab-shell .ab-feature-grid{
+    padding-left:5px!important;
+    padding-right:5px!important;
+  }
+}
